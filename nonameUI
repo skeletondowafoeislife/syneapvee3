@@ -180,7 +180,7 @@ do
 
         end)
 
-        if class == "Square" or class == "Circle" or class == "Line" then
+        if class == Square or class == Circle or class == Line then
             fakeDraw.Thickness = 1
             if class == "Square" then
                 fakeDraw.Filled = true
@@ -188,7 +188,7 @@ do
             end
         end
 
-        if class ~= "Image" then
+        if class ~= Image then
             fakeDraw.Color = Color3.new(0, 0, 0)
         end
 
