@@ -351,7 +351,7 @@ function library.New(self, info, theme)
     local window = {shit = {}, kbds = {}, rna = {}, sshit = nil, theme = theme, tabs = {}, _last = {0, 0}, start = v2zero, connections = {}, dragging = false}
 
     local main_frame = utility:Draw(Square, nil, {
-        Size = size,
+        Size = v2new(size.X + 1, size.Y + 1),
         Color = window.theme.lcont,
         Group = "lcont",
         Position = utility:RoundVector(utility:ScreenSize() / 2 - v2new(250, 300))
@@ -378,19 +378,21 @@ function library.New(self, info, theme)
         end
     end)
 
-    local main_frame_outline = utility:Draw(Square, v2new(-1, -1), {
-        Size = main_frame.Size + v2new(2, 2),
-        Color = window.theme.outline,
-        Group = "outline",
-        Filled = false,
-        Parent = main_frame
-    })
-
-    local main_frame_accent = utility:Draw(Square, v2new(-2, -2), {
-        Size = main_frame.Size + v2new(4, 4),
+    local main_frame_accent = utility:Draw(Square, v2new(-1, -1), {
+        Size = main_frame.Size + v2new(1.5, 1.5),
         Color = window.theme.accent,
         Filled = false,
         Group = "accent",
+		Thickness = 2,
+        Parent = main_frame
+    })
+	
+    local main_frame_outline = utility:Draw(Square, v2new(0, 0), {
+        Size = main_frame.Size,
+        Color = window.theme.outline,
+        Group = "outline",
+        Filled = false,
+
         Parent = main_frame
     })
 
@@ -694,7 +696,7 @@ function library.New(self, info, theme)
                 section_frame.Size = v2new(self.rna and 228 or tabs_frame.Size.X / 2 - 12, table.find(tside, self) == #tside and tabs_frame.Size.Y - (section_frame.GetOffset().Y+5) or self.scale > 0 and self.scale or 10)
                 section_inline.Size = section_frame.Size + v2new(2, 2)
                 section_outline.Size = section_inline.Size + v2new(2, 2)
-                section_accent2.Size = v2new(section_frame.Size.X - (11 + (#name * 7)), 2)
+                section_accent2.Size = v2new(section_frame.Size.X - (11 + (section_title.TextBounds.X)), 2)
 
                 for i, v in (self.things.lists) do
                     v:update()
