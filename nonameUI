@@ -67,10 +67,10 @@ do
                 table.insert(library.groups[name], fakeDraw)
             end,
             ["OffsetX"] = function(x)
-                fakeDraw.SetOffset(x, fadeDraw.GetOffset().Y)
+                fakeDraw.SetOffset(v2new(x, fakeDraw.GetOffset().Y))
             end,
-            ["OffsetY"] = function(Y)
-                fakeDraw.SetOffset(fadeDraw.GetOffset().X, y)
+            ["OffsetY"] = function(y)
+                fakeDraw.SetOffset(v2new(fakeDraw.GetOffset().X, y))
             end
         }
 
@@ -186,11 +186,11 @@ do
                 fakeDraw.Filled = true
                 fakeDraw.Thickness = 1
             end
-        elseif class == Text then
-			local offsets = fakeDraw:GetOffset()
-			print(offsets)
-			fakeDraw:SetOffset(v2new(offsets.X, offsets.Y - 2))
-		end
+		elseif class == Text then
+			spawn(function()
+				fakeDraw.SetOffset(v2new(fakeDraw.GetOffset().X, offset.Y - 4))
+			end)
+        end
 
         if class ~= Image then
             fakeDraw.Color = Color3.new(0, 0, 0)
@@ -297,8 +297,16 @@ do
 
     -- // xyl thanks for the method cause im npc
 
-    function utility:GetPlexSize(text)
-        return #text * 7
+    function utility:GetTextSize(text, font, size)
+		local draw = Text.new()
+		draw.Text = text
+		draw.Font = font
+		draw.Size = size
+		
+		local size = draw.TextBounds
+		draw:Remove()
+		
+        return size.X
     end
 
     function utility:CopyTable(tbl)
@@ -321,7 +329,7 @@ do
     end
 
     -- // totally not pasted from splix (100%)
-    -- //        oh no im a paster
+    -- // oh no im a paster
 
     utility.short_keybind_names = {["MouseButton1"] = "MB1", ["MouseButton2"] = "MB2", ["MouseButton3"] = "MB3", ["Insert"] = "INS", ["LeftAlt"] = "LALT", ["LeftControl"] = "LC", ["LeftShift"] = "LS", ["RightAlt"] = "RALT", ["RightControl"] = "RC", ["RightShift"] = "RS", ["CapsLock"] = "CAPS", ["Return"] = "RET", ["Backspace"] = "BSP"}
 end
@@ -467,7 +475,7 @@ function library.New(self, info, theme)
         end
 
         local tab_frame = utility:Draw(Square, offset, {
-            Size = v2new(utility:GetPlexSize(name) + 12, 18),
+            Size = v2new(utility:GetTextSize(name, Drawing.Fonts.UI, 17) + 12, 18),
             Color = window.theme.lcont,
             Parent = tabs_frame
         })
@@ -642,16 +650,8 @@ function library.New(self, info, theme)
                 Parent = section_frame
             })
 
-            local section_title_bold = utility:Draw(Text, v2new(1, 0), {
-                Font = Drawing.Fonts.UI,
-                Size = 17,
-                Color = Color3.new(1, 1, 1),
-                Text = name,
-                Parent = section_title
-            })
-
-            local section_accent2 = utility:Draw(Square, v2new(11 + (#name * 7), 0), {
-                Size = v2new(section_frame.Size.X - (11 + (#name * 7)), 2),
+            local section_accent2 = utility:Draw(Square, v2new(11 + (section_title.TextBounds.X), 0), {
+                Size = v2new(section_frame.Size.X - (11 + (section_title.TextBounds.X)), 2),
                 Color = window.theme.accent,
                 Group = "accent",
                 Parent = section_frame
@@ -2042,7 +2042,7 @@ function library.New(self, info, theme)
 
                 function dropdown.GenerateValueName(self)
                     if not self.multi then
-                        local text_size = utility:GetPlexSize(self.value)
+                        local text_size = utility:GetTextSize(self.value, Drawing.Fonts.UI, 17)
 
                         local max_size = dropdown_frame.Size.X - (4+16)
 
@@ -2062,7 +2062,7 @@ function library.New(self, info, theme)
                             end
                         end
 
-                        local text_size = utility:GetPlexSize(text)
+                        local text_size = utility:GetTextSize(text, Drawing.Fonts.UI, 17)
 
                         local max_size = dropdown_frame.Size.X - (4+16)
 
@@ -2606,15 +2606,15 @@ function library.New(self, info, theme)
             local ntif_frame = utility:Draw(Square, nil, {
                 Color = window.theme.lcont,
                 Group = "lcont",
-                Size = v2new(7 + utility:GetPlexSize(text), 4 + (#text:split("\n")*13)),
-                Position = v2new(-utility:GetPlexSize(text), 0)
+                Size = v2new(7 + utility:GetTextSize(text, Drawing.Fonts.UI, 17), 4 + (#text:split("\n")*13)),
+                Position = v2new(-utility:GetTextSize(text, Drawing.Fonts.UI, 17), 0)
             }, true)
 
             if #text:split("\n") > 1 then
                 local max = 0
                 for i, v in (text:split("\n")) do
-                    if utility:GetPlexSize(v) > max then
-                        max = utility:GetPlexSize(v)
+                    if utility:GetTextSize(v, Drawing.Fonts.UI, 17) > max then
+                        max = utility:GetTextSize(v, Drawing.Fonts.UI, 17)
                     end
                 end
 
@@ -2812,8 +2812,8 @@ function library.New(self, info, theme)
 
                 local string_add = ("[%s] %s: %s\n"):format(keybind.instances[5].Text, keybind.sname, keybind.name)
 
-                if utility:GetPlexSize(string_add) > max_len then
-                    max_len = utility:GetPlexSize(string_add)
+                if utility:GetTextSize(string_add, Drawing.Fonts.UI, 17) > max_len then
+                    max_len = utility:GetTextSize(string_add, Drawing.Fonts.UI, 17)
                 end
 
                 kbds_string = kbds_string .. string_add
@@ -2898,7 +2898,7 @@ function library.New(self, info, theme)
         watermark.instances = {watermark_frame, watermark_inline, watermark_outline, watermark_accent, watermark_gradient, watermark_title}
 
         function watermark.Update(self)
-            local bounds = utility:GetPlexSize(self.text)
+            local bounds = utility:GetTextSize(self.text, Drawing.Fonts.UI, 17)
 
             watermark_frame.Size = v2new(6 + bounds, 20)
             watermark_inline.Size = watermark_frame.Size + v2new(2, 2)
@@ -2976,13 +2976,13 @@ function library.New(self, info, theme)
 
             tt_text.Text = text
 
-            tt_frame.Size = v2new(7 + utility:GetPlexSize(text), 4 + (#text:split("\n")*13))
+            tt_frame.Size = v2new(7 + utility:GetTextSize(text, Drawing.Fonts.UI, 17), 4 + (#text:split("\n")*13))
 
             if #text:split("\n") > 1 then
                 local max = 0
                 for i, v in (text:split("\n")) do
-                    if utility:GetPlexSize(v) > max then
-                        max = utility:GetPlexSize(v)
+                    if utility:GetTextSize(v, Drawing.Fonts.UI, 17) > max then
+                        max = utility:GetTextSize(v, Drawing.Fonts.UI, 17)
                     end
                 end
 
