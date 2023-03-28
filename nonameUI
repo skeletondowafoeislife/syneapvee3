@@ -187,7 +187,9 @@ do
                 fakeDraw.Thickness = 1
             end
         elseif class == Text then
-			fakeDraw:SetOffset(fakeDraw:GetOffset().X, fakeDraw:GetOffset().Y - 2)
+			local offsets = fakeDraw:GetOffset()
+			print(offsets)
+			fakeDraw:SetOffset(offsets.X, offsets.Y - 2)
 		end
 
         if class ~= Image then
