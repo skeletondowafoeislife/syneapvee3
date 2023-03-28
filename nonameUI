@@ -182,7 +182,7 @@ do
 
         if class == Square or class == Circle or class == Line then
             fakeDraw.Thickness = 1
-            if class == "Square" then
+            if class == Square then
                 fakeDraw.Filled = true
                 fakeDraw.Thickness = 1
             end
