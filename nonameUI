@@ -2167,7 +2167,7 @@ function library.New(self, info, theme)
                         local min, max = dropdown.scrolling[1], dropdown.scrolling[2]
 
                         if direction == "up" then
-                            dropdown.scrolling[1] = min ~= 1 and min (- 1 or min
+                            dropdown.scrolling[1] = min ~= 1 and min - 1 or min
                             dropdown.scrolling[2] = min ~= 1 and max - 1 or max
                         else
                             dropdown.scrolling[1] = max ~= #dropdown.options and min + 1 or min
@@ -2341,7 +2341,7 @@ function library.New(self, info, theme)
                         local min, max = list.scroll[1], list.scroll[2]
 
                         if direction == "up" then
-                            list.scroll[1] = min ~= 1 and min (- 1 or min
+                            list.scroll[1] = min ~= 1 and min - 1 or min
                             list.scroll[2] = min ~= 1 and max - 1 or max
                         else
                             list.scroll[1] = max ~= #list.options and min + 1 or min
@@ -3057,9 +3057,9 @@ function library.New(self, info, theme)
 
             local slider_section = self.tabs[1]:Section({name = "Animation", rna = true})
             local anim_enabled = slider_section:Toggle({name = "Enabled", pointer = ""})
-            local anim_speed = slider_section:Slider({name = "Speed", min (= 0.1, def = 1, max = 15, dec = 10, pointer = ""})
-            local anim_min (= slider_section:Slider({name = "Minimum value", min (= 1, max = 2, pointer = ""})
-            local anim_max = slider_section:Slider({name = "Maximum value", min (= 1, max = 2, pointer = ""})
+            local anim_speed = slider_section:Slider({name = "Speed", min = 0.1, def = 1, max = 15, dec = 10, pointer = ""})
+            local anim_min = slider_section:Slider({name = "Minimum value", min = 1, max = 2, pointer = ""})
+            local anim_max = slider_section:Slider({name = "Maximum value", min = 1, max = 2, pointer = ""})
 
             slider_section:Update()
             slider_section:SetPositionIHateMyselfAndIWannaDieOk(v2new(-1000, -1000))
@@ -3084,11 +3084,11 @@ function library.New(self, info, theme)
 
                                     slider_section:SetPositionIHateMyselfAndIWannaDieOk(slider_title.Position + v2new(2, 2))
 
-                                    anim_min.min (= slider.min
+                                    anim_min.min = slider.min
                                     anim_min.max = slider.max
                                     anim_min.dec = slider.dec
 
-                                    anim_max.min (= slider.min
+                                    anim_max.min = slider.min
                                     anim_max.max = slider.max
                                     anim_max.dec = slider.dec
 
@@ -3109,7 +3109,7 @@ function library.New(self, info, theme)
 
                                         self.saved_settings[slider.pointer] = {
                                             enabled = false,
-                                            min (= slider.min,
+                                            min = slider.min,
                                             max = slider.max,
                                             speed = 1,
                                             dec = slider.dec,
@@ -3144,7 +3144,7 @@ function library.New(self, info, theme)
                 if slider_flag ~= nil then
                     self.saved_settings[slider_flag] = {
                         enabled = anim_enabled:Get(),
-                        min (= anim_min:Get(),
+                        min = anim_min:Get(),
                         max = anim_max:Get(),
                         speed = anim_speed:Get(),
                         dec = library.pointers[slider_flag].dec,
