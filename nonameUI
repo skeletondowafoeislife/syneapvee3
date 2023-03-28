@@ -189,7 +189,7 @@ do
         elseif class == Text then
 			local offsets = fakeDraw:GetOffset()
 			print(offsets)
-			fakeDraw:SetOffset(offsets.X, offsets.Y - 2)
+			fakeDraw:SetOffset(v2new(offsets.X, offsets.Y - 2))
 		end
 
         if class ~= Image then
