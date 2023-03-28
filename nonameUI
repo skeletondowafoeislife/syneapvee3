@@ -42,7 +42,7 @@ do
     utility.vozoid_tween = loadstring(game:HttpGet("https://raw.githubusercontent.com/vozoid/utility/main/Tween.lua"))()
 
     -- // utility:Draw is super pasted and skidded and shitcoded even i cant read it even tho i coded it
-    -- // xyl pls dont ban me for this code 😭😢
+    -- // xyl pls) dont ban me for this code 😭😢
 
     -- // 24 december 2022: added groups to make my life easier
 
@@ -73,9 +73,7 @@ do
                 fakeDraw.SetOffset(fadeDraw.GetOffset().X, y)
             end
         }
-		if class == Square then
-			class.Filled = true
-		end
+
         setmetatable(fakeDraw, {
             __index = function(self, key)
                 if rawget(fakeDraw, "__OBJECT_EXIST") then
@@ -89,7 +87,7 @@ do
                     else
                         draw[key] = value
                         if key == "Position" and offsetEnabled then
-                            for _, v in rawget(fakeDraw, "children") do
+                            for _, v in (rawget(fakeDraw, "children")) do
                                 v.Position = fakeDraw.Position + v.GetOffset()
                             end
                         end
@@ -131,7 +129,7 @@ do
 
         local lerpLoop
 
-        function lerp(v1, v2, ptc) -- // exists so it does work for Color3 n shit
+        function lerp(v1, v2, ptc) -- // exists so it) does work for Color3 n shit
             if typeof(v1) == "number" then
                 return v1 + ((v2 - v1) * ptc)
             end
@@ -145,7 +143,7 @@ do
 
             local from = {}
 	
-            for i, _ in to do
+            for i, _ in (to) do
                 from[i] = fakeDraw[i]
             end
             
@@ -159,7 +157,7 @@ do
             local loop; loop = rs.Heartbeat:Connect(function(delta)
                 
                 if elapsed == time then
-                    for i, v in to do
+                    for i, v in (to) do
                         fakeDraw[i] = v
                     end
 
@@ -170,7 +168,7 @@ do
 
                 local ptc = (elapsed / time)
                 
-                for i, v in to do
+                for i, v in (to) do
                     fakeDraw[i] = lerp(from[i], v, ptc)
                 end
                 
@@ -196,7 +194,7 @@ do
 
         fakeDraw.Visible = library.loaded
         if properties ~= nil then
-            for key, value in properties do
+            for key, value in (properties) do
                 if customProperties[key] == nil then
                     fakeDraw[key] = value
                 else
@@ -284,10 +282,10 @@ do
 
     function utility:Combine(t1, t2)
         local t3 = {}
-        for i, v in t1 do
+        for i, v in (t1) do
             table.insert(t3, v)
         end
-        for i, v in t2 do
+        for i, v in (t2) do
             table.insert(t3, v)
         end
         return t3
@@ -301,7 +299,7 @@ do
 
     function utility:CopyTable(tbl)
         local newtbl = {}
-        for i, v in tbl do
+        for i, v in (tbl) do
             newtbl[i] = v
         end
         return newtbl
@@ -503,7 +501,7 @@ function library.New(self, info, theme)
             tab_frame.Color = window.theme.lcont
             tab_frame_hider.Visible = true
 
-            for i, v in self.sections do
+            for i, v in (self.sections) do
                 v:Show()
             end
 
@@ -516,7 +514,7 @@ function library.New(self, info, theme)
             tab_frame.Color = window.theme.dcont
             tab_frame_hider.Visible = false
 
-            for i, v in self.sections do
+            for i, v in (self.sections) do
                 v:Hide()
             end
 
@@ -533,11 +531,11 @@ function library.New(self, info, theme)
 
             -- // loop for every side (left, right)
 
-            for sn, side in self.sides do
+            for sn, side in (self.sides) do
 
-                -- // every section in it
+                -- // every section in (it
 
-                for i, v in side do
+                for i, v in (side) do
 
                     -- // update it's size
                     
@@ -569,7 +567,7 @@ function library.New(self, info, theme)
 
             self:UpdateColor()
 
-            for i, v in self.sections do
+            for i, v in (self.sections) do
                 v:Update()
             end
         end
@@ -656,7 +654,7 @@ function library.New(self, info, theme)
             })
 
             function section.Show(self)
-                for i, v in self.instances do
+                for i, v in (self.instances) do
                     v.Visible = true
 
                     if v.Transparency ~= v:getDefaultTransparency() and not window.fading then
@@ -666,7 +664,7 @@ function library.New(self, info, theme)
             end
 
             function section.Hide(self)
-                for i, v in self.instances do
+                for i, v in (self.instances) do
                     v.Visible = false
 
                     v:setOffsetValue(false)
@@ -694,12 +692,12 @@ function library.New(self, info, theme)
                 section_outline.Size = section_inline.Size + v2new(2, 2)
                 section_accent2.Size = v2new(section_frame.Size.X - (11 + (#name * 7)), 2)
 
-                for i, v in self.things.lists do
+                for i, v in (self.things.lists) do
                     v:update()
                 end
 
-                for _, thing in {"buttons", "dropdowns", "sliders", "textboxes", "keybinds", "colorpickers", "toggles"} do
-                    for i, v in section.things[thing] do
+                for _, thing in ({"buttons", "dropdowns", "sliders", "textboxes", "keybinds", "colorpickers", "toggles"}) do
+                    for i, v in (section.things[thing]) do
                         v:Update()
                     end
                 end
@@ -720,7 +718,7 @@ function library.New(self, info, theme)
                     local is_it_visible = false
 
                     if tab.on then
-                        for i, v in section.things.toggles do
+                        for i, v in (section.things.toggles) do
                             if is_it_visible then break end
                             local toggle_frame = getupvalue(v.Update, 1)
 
@@ -847,7 +845,7 @@ function library.New(self, info, theme)
 
                 function keybind.Close(self)
                     if #self.minst > 0 then
-                        for i, v in self.minst do
+                        for i, v in (self.minst) do
                             v.Remove()
                         end
 
@@ -878,7 +876,7 @@ function library.New(self, info, theme)
 
                     local modes = {}
 
-                    for i, v in {"Toggle", "Hold"} do
+                    for i, v in ({"Toggle", "Hold"}) do
 
                         modes[i] = utility:Draw(Text, v2new(3, 2 + 14 * (i-1)), {
                             Font = 4,
@@ -917,7 +915,7 @@ function library.New(self, info, theme)
                                             keybind.mode = "toggle"
                                         end
 
-                                        for i, v in {keybind.minst[3], keybind.minst[4]} do
+                                        for i, v in ({keybind.minst[3], keybind.minst[4]}) do
                                             v.Color = keybind.mode == v.Text:lower() and window.theme.accent or c3rgb(255, 255, 255)
                                         end
                                     else
@@ -1074,7 +1072,7 @@ function library.New(self, info, theme)
 
                 function colorpicker.Close(self)
                     if #self.instances > 0 then
-                        for i, v in self.instances do
+                        for i, v in (self.instances) do
                             v.Remove()
                         end
 
@@ -1999,7 +1997,7 @@ function library.New(self, info, theme)
 
                     self.instances = {list_frame, list_outline, list_scrollbar}
 
-                    for i, v in self.options do
+                    for i, v in (self.options) do
                         local option_text = utility:Draw(Text, v2new(4, 2+16*(i-1)), {
                             Color = (multi and table.find(self.value, v) or not multi and self.value == v) and window.theme.accent or c3rgb(255, 255, 255),
                             Outline = true,
@@ -2027,7 +2025,7 @@ function library.New(self, info, theme)
                 end
 
                 function dropdown.Close(self)
-                    for _, v in self.instances do
+                    for _, v in (self.instances) do
                         v.Remove()
                     end
 
@@ -2052,7 +2050,7 @@ function library.New(self, info, theme)
                     else
                         local text = ""
 
-                        for i, v in self.value do
+                        for i, v in (self.value) do
                             if i ~= #self.value then
                                 text = text .. v .. ", "
                             else
@@ -2082,7 +2080,7 @@ function library.New(self, info, theme)
                         self.instances[1].Size = v2new(dropdown_frame.Size.X, self.instances[1].Size.Y)
                         self.instances[2].Size = self.instances[1].Size + v2new(2, 2)
 
-                        for i, v in {select(4, unpack(self.instances))} do
+                        for i, v in ({select(4, unpack(self.instances))}) do
                             if multi and table.find(self.value, v.Text) or not multi and self.value == v.Text then
                                 v.Color = window.theme.accent
                             else
@@ -2169,7 +2167,7 @@ function library.New(self, info, theme)
                         local min, max = dropdown.scrolling[1], dropdown.scrolling[2]
 
                         if direction == "up" then
-                            dropdown.scrolling[1] = min ~= 1 and min - 1 or min
+                            dropdown.scrolling[1] = min ~= 1 and min (- 1 or min
                             dropdown.scrolling[2] = min ~= 1 and max - 1 or max
                         else
                             dropdown.scrolling[1] = max ~= #dropdown.options and min + 1 or min
@@ -2251,7 +2249,7 @@ function library.New(self, info, theme)
                 end
 
                 function list.draw_options(self)
-                    for i, v in self.opinst do
+                    for i, v in (self.opinst) do
                         v.Remove()
                     end
 
@@ -2259,7 +2257,7 @@ function library.New(self, info, theme)
 
                     self.scroll = {1, 10}
 
-                    for i, text in self.options do
+                    for i, text in (self.options) do
 
                         local list_option = utility:Draw(Text, v2new(3, (i-1)*14), {
                             Color = self.value == text and window.theme.accent or c3rgb(255, 255, 255),
@@ -2284,7 +2282,7 @@ function library.New(self, info, theme)
                     list_frame.Size = v2new(section_frame.Size.X - 12, 140)
                     list_frame_outline.Size = list_frame.Size + v2new(2, 2)
 
-                    for i, v in self.opinst do
+                    for i, v in (self.opinst) do
                         v.Visible = list_frame.Visible and i >= self.scroll[1] and i <= self.scroll[2]
                         if v.Visible then
                             v.Color = self.value == self.options[i] and window.theme.accent or c3rgb(255, 255, 255)
@@ -2343,7 +2341,7 @@ function library.New(self, info, theme)
                         local min, max = list.scroll[1], list.scroll[2]
 
                         if direction == "up" then
-                            list.scroll[1] = min ~= 1 and min - 1 or min
+                            list.scroll[1] = min ~= 1 and min (- 1 or min
                             list.scroll[2] = min ~= 1 and max - 1 or max
                         else
                             list.scroll[1] = max ~= #list.options and min + 1 or min
@@ -2390,11 +2388,11 @@ function library.New(self, info, theme)
     end
 
     function window.Update(self)
-        for i, v in self.rna do
+        for i, v in (self.rna) do
             v:Update()
         end
 
-        for i, v in self.tabs do
+        for i, v in (self.tabs) do
             if v == window.sshit then
                 v:Update()
             else
@@ -2415,7 +2413,7 @@ function library.New(self, info, theme)
         if not table.find(window.rna, section) then
             local on = false
 
-            for i, v in window.rna do
+            for i, v in (window.rna) do
                 if on then break end
 
                 on = utility:MouseOverDrawing(v.instances[1])
@@ -2429,8 +2427,8 @@ function library.New(self, info, theme)
     function window.NewTheme(self, theme)
         self.theme = theme
 
-        for i, _ in self.theme do
-            for _, obj in library.groups[i] do
+        for i, _ in (self.theme) do
+            for _, obj in (library.groups[i]) do
                 obj.Color = self.theme[i]
             end
         end
@@ -2442,7 +2440,7 @@ function library.New(self, info, theme)
 
         if self.fading then return end
 
-        for i, v in self.tabs do
+        for i, v in (self.tabs) do
             if v.instances[3].Text == name then
                 v:Show()
                 v:Update()
@@ -2453,7 +2451,7 @@ function library.New(self, info, theme)
             end
         end
 
-        for _, v in self.connections["tab"] or {} do
+        for _, v in (self.connections["tab"] or {}) do
             v(name)
         end
     end
@@ -2488,7 +2486,7 @@ function library.New(self, info, theme)
     function window.GetFakeRealNoobConfigFunctionDontUseMe(self)
         local new_table = {}
 
-        for i, v in library.pointers do
+        for i, v in (library.pointers) do
             new_table[i] = v:Get()
         end
 
@@ -2498,7 +2496,7 @@ function library.New(self, info, theme)
     end
 
     function window.BestFunctionToKillMyselfFurryGayPornFemboyDildoMasterAloneWolfMode(self, IHATEMYSELFFUCKINGIWANTTODIEIMUSELESSINTHISLIFENOBODYLIKESME)
-        for USELESSNAMEFORNONAMERIHATEMYSELF, SHITTYVALUEFORNOBODYCAUSEIMALONEIMSODUMBFUCKINGUSELESS in IHATEMYSELFFUCKINGIWANTTODIEIMUSELESSINTHISLIFENOBODYLIKESME do
+        for USELESSNAMEFORNONAMERIHATEMYSELF, SHITTYVALUEFORNOBODYCAUSEIMALONEIMSODUMBFUCKINGUSELESS in (IHATEMYSELFFUCKINGIWANTTODIEIMUSELESSINTHISLIFENOBODYLIKESME) do
             if library.pointers[USELESSNAMEFORNONAMERIHATEMYSELF] then
                 library.pointers[USELESSNAMEFORNONAMERIHATEMYSELF]:Set(SHITTYVALUEFORNOBODYCAUSEIMALONEIMSODUMBFUCKINGUSELESS)
             end
@@ -2514,7 +2512,7 @@ function library.New(self, info, theme)
     function window.Fade(self)
         if self.fading then return end
 
-        for i, v in self.connections["fade"] or {} do
+        for i, v in (self.connections["fade"] or {}) do
             v(not main_frame.Visible)
         end
 
@@ -2528,16 +2526,16 @@ function library.New(self, info, theme)
             fade_instances = utility:Combine(fade_instances, self.cursor.instances)
         end
 
-        for i, v in self.tabs do
+        for i, v in (self.tabs) do
             fade_instances = utility:Combine(fade_instances, v.instances)
         end
 
-        for i, v in self.rna do
+        for i, v in (self.rna) do
             fade_instances = utility:Combine(fade_instances, v.instances)
         end
 
         if self.sshit then
-            for _, s in self.sshit.sections do
+            for _, s in (self.sshit.sections) do
                 fade_instances = utility:Combine(fade_instances, s.instances)
             end
         end
@@ -2549,7 +2547,7 @@ function library.New(self, info, theme)
                 self.tooltip:SetPosition(v2new(-1000, -1000))
             end
 
-            for i, v in fade_instances do
+            for i, v in (fade_instances) do
                 v.Lerp({Transparency = 0}, 0.2)
 
                 task.delay(0.2, function()
@@ -2563,7 +2561,7 @@ function library.New(self, info, theme)
         else
             self.fading = true
 
-            for i, v in fade_instances do
+            for i, v in (fade_instances) do
                 v.Visible = true
                 v.Transparency = 0
 
@@ -2610,7 +2608,7 @@ function library.New(self, info, theme)
 
             if #text:split("\n") > 1 then
                 local max = 0
-                for i, v in text:split("\n") do
+                for i, v in (text:split("\n")) do
                     if utility:GetPlexSize(v) > max then
                         max = utility:GetPlexSize(v)
                     end
@@ -2654,7 +2652,7 @@ function library.New(self, info, theme)
 
             local highligted = {}
 
-            for _, v in text_highlight do
+            for _, v in (text_highlight) do
                 local s, e = ntif.text:find(v[1])
 
                 if s and e then
@@ -2700,13 +2698,13 @@ function library.New(self, info, theme)
             end)
 
             function ntif.idontlikemylifesucidepleasesomebodykillme(self)
-                for i, v in self.instances do
+                for i, v in (self.instances) do
                     v.Lerp({Transparency = 0}, 0.2)
                 end
 
                 task.wait(0.2)
 
-                for i, v in self.instances do
+                for i, v in (self.instances) do
                     v.Remove()
                 end
 
@@ -2729,7 +2727,7 @@ function library.New(self, info, theme)
 
         function notiflist.reposition(self)
             local position_to_go = 60 + self.interval
-            for i, v in self.ntifs do
+            for i, v in (self.ntifs) do
                 local position = v2new(19, position_to_go)
 
                 local lerp_table = {Position = position}
@@ -2737,7 +2735,7 @@ function library.New(self, info, theme)
                 if v.instances[1].Position.X < 0 then
                     v.instances[1].Position = position + v2new(-4, 7)
 
-                    for i, v in v.instances do
+                    for i, v in (v.instances) do
                         v.Transparency = 0
                         
                         if i == 1 then
@@ -2805,7 +2803,7 @@ function library.New(self, info, theme)
             local kbds_string = ""
             local max_len = 56
 
-            for i, v in window.kbds do
+            for i, v in (window.kbds) do
                 local keybind = library.pointers[v]
 
                 local string_add = ("[%s] %s: %s\n"):format(keybind.instances[5].Text, keybind.sname, keybind.name)
@@ -2828,7 +2826,7 @@ function library.New(self, info, theme)
         end
 
         function kblist.ShowHideFromMyLifePleaseSomebodyKillMeIDontWantToBeAliveRightNowImUselessInMyLife(self, visible)
-            for i, v in self.instances do
+            for i, v in (self.instances) do
                 v.Visible = visible
             end
         end
@@ -2845,7 +2843,7 @@ function library.New(self, info, theme)
 
     function window.Watermark(self)
 
-        local watermark = {text = "worsst fucking ui without doxxs", visible = false, instances = {}}
+        local watermark = {text = "worsst fucking ui without) doxxs", visible = false, instances = {}}
 
         local watermark_frame = utility:Draw(Square, v2zero, {
             Color = window.theme.lcont,
@@ -2910,7 +2908,7 @@ function library.New(self, info, theme)
         function watermark.SetVisible(self, value)
             self.visible = value
 
-            for i, v in self.instances do
+            for i, v in (self.instances) do
                 v.Visible = self.visible
             end
         end
@@ -2968,7 +2966,7 @@ function library.New(self, info, theme)
         tooltip.instances = {tt_frame, tt_frame_outline, tt_accent, tt_text}
 
         function tooltip.SetText(self, text)
-            for i, v in self.instances do
+            for i, v in (self.instances) do
                 v.Visible = true
             end
 
@@ -2978,7 +2976,7 @@ function library.New(self, info, theme)
 
             if #text:split("\n") > 1 then
                 local max = 0
-                for i, v in text:split("\n") do
+                for i, v in (text:split("\n")) do
                     if utility:GetPlexSize(v) > max then
                         max = utility:GetPlexSize(v)
                     end
@@ -3050,7 +3048,7 @@ function library.New(self, info, theme)
 
     function window.Init(self)
 
-        for _, tab in self.tabs do
+        for _, tab in (self.tabs) do
             tab:Update()
         end
 
@@ -3059,9 +3057,9 @@ function library.New(self, info, theme)
 
             local slider_section = self.tabs[1]:Section({name = "Animation", rna = true})
             local anim_enabled = slider_section:Toggle({name = "Enabled", pointer = ""})
-            local anim_speed = slider_section:Slider({name = "Speed", min = 0.1, def = 1, max = 15, dec = 10, pointer = ""})
-            local anim_min = slider_section:Slider({name = "Minimum value", min = 1, max = 2, pointer = ""})
-            local anim_max = slider_section:Slider({name = "Maximum value", min = 1, max = 2, pointer = ""})
+            local anim_speed = slider_section:Slider({name = "Speed", min (= 0.1, def = 1, max = 15, dec = 10, pointer = ""})
+            local anim_min (= slider_section:Slider({name = "Minimum value", min (= 1, max = 2, pointer = ""})
+            local anim_max = slider_section:Slider({name = "Maximum value", min (= 1, max = 2, pointer = ""})
 
             slider_section:Update()
             slider_section:SetPositionIHateMyselfAndIWannaDieOk(v2new(-1000, -1000))
@@ -3073,9 +3071,9 @@ function library.New(self, info, theme)
                     if input.UserInputType == Enum.UserInputType.MouseButton2 then
                         local slider_visible = false
 
-                        for _, section in window.sshit.sections do
+                        for _, section in (window.sshit.sections) do
                             if slider_visible then break end
-                            for _, slider in section.things.sliders do
+                            for _, slider in (section.things.sliders) do
                                 if slider_visible then break end
 
                                 local section_frame = section.instances[1]
@@ -3086,11 +3084,11 @@ function library.New(self, info, theme)
 
                                     slider_section:SetPositionIHateMyselfAndIWannaDieOk(slider_title.Position + v2new(2, 2))
 
-                                    anim_min.min = slider.min
+                                    anim_min.min (= slider.min
                                     anim_min.max = slider.max
                                     anim_min.dec = slider.dec
 
-                                    anim_max.min = slider.min
+                                    anim_max.min (= slider.min
                                     anim_max.max = slider.max
                                     anim_max.dec = slider.dec
 
@@ -3111,7 +3109,7 @@ function library.New(self, info, theme)
 
                                         self.saved_settings[slider.pointer] = {
                                             enabled = false,
-                                            min = slider.min,
+                                            min (= slider.min,
                                             max = slider.max,
                                             speed = 1,
                                             dec = slider.dec,
@@ -3146,7 +3144,7 @@ function library.New(self, info, theme)
                 if slider_flag ~= nil then
                     self.saved_settings[slider_flag] = {
                         enabled = anim_enabled:Get(),
-                        min = anim_min:Get(),
+                        min (= anim_min:Get(),
                         max = anim_max:Get(),
                         speed = anim_speed:Get(),
                         dec = library.pointers[slider_flag].dec,
@@ -3154,7 +3152,7 @@ function library.New(self, info, theme)
                     }
                 end
 
-                for i, v in self.saved_settings do
+                for i, v in (self.saved_settings) do
                     if v.enabled then
                         local sin_tick = 1 + math.sin(math.rad((tick()*50*v.speed)) + math.rad(v.random_angle_offset))
 
@@ -3183,15 +3181,15 @@ function library.New(self, info, theme)
         library.loaded = true
 
         function self.Unload(self)
-            for i, v in utility:Combine(library.drawings[1], library.drawings[2]) do
+            for i, v in (utility:Combine(library.drawings[1], library.drawings[2])) do
                 v[1]:Remove()
             end
 
-            for i, v in library.connections do
+            for i, v in (library.connections) do
                 v:Disconnect()
             end
 
-            for i, v in self.connections["unload"] or {} do
+            for i, v in (self.connections["unload"] or {}) do
                 v()
             end
 
