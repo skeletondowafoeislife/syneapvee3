@@ -74,7 +74,7 @@ do
             end
         }
 		if class == Square then
-			Square.Filled = true
+			class.Filled = true
 		end
         setmetatable(fakeDraw, {
             __index = function(self, key)
