@@ -73,7 +73,9 @@ do
                 fakeDraw.SetOffset(fadeDraw.GetOffset().X, y)
             end
         }
-
+		if class == Square then
+			Square.Filled = true
+		end
         setmetatable(fakeDraw, {
             __index = function(self, key)
                 if rawget(fakeDraw, "__OBJECT_EXIST") then
@@ -95,9 +97,11 @@ do
                 end
             end
         })
+		
         rawset(fakeDraw, "getDefaultTransparency", function(self)
             return rawget(self, "__properties").Transparency or 1
         end)
+		
         rawset(fakeDraw, "setOffsetValue", function(self)
             offsetEnabled = true
 
